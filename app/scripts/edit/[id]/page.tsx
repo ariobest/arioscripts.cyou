@@ -1,0 +1,2 @@
+import ScriptEditor from "@/components/script-editor";
+export default function EditScript({params}:{params:{id:string}}){return <div className="max-w-5xl mx-auto px-5 py-14"><p className="eyebrow mb-3">YOUR WORKSPACE</p><h1 className="text-5xl font-black tracking-tight mb-4">Edit script.</h1><ScriptEditor id={params.id}/></div>}
