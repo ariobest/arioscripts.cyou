@@ -1,0 +1,2 @@
+import ScriptEditor from "@/components/script-editor";
+export default function NewScript(){return <div className="max-w-5xl mx-auto px-5 py-14"><p className="eyebrow mb-3">CONTRIBUTE TO THE LIBRARY</p><h1 className="text-5xl font-black tracking-tight mb-4">Publish a script.</h1><p className="muted mb-10">Add context, clean up your code, and share it with the community.</p><ScriptEditor/></div>}
