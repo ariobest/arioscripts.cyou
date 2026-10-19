@@ -4,7 +4,7 @@ A dark-first script sharing platform built with Next.js, TypeScript, Tailwind CS
 
 ## Quick start
 1. Copy `.env.example` to `.env.local` and set your Supabase project URL and publishable/anon key.
-2. In Supabase SQL Editor, run `supabase/schema.sql`.
+2. In Supabase SQL Editor, run `supabase/schema.sql`, then `supabase/security-fix.sql`, then `supabase/metrics.sql` (in that order).
 3. In Supabase Authentication > URL Configuration, set your local and production Site URLs and redirect URLs.
 4. Install and run: `npm install && npm run dev`.
 5. To grant admin access, use the SQL instructions at the bottom of `supabase/schema.sql` after creating your account. Never expose a service-role key in the browser.
