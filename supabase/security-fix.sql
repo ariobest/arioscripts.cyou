@@ -3,7 +3,15 @@ create or replace function public.is_admin() returns boolean language sql stable
  select exists(select 1 from public.profiles where id=(select auth.uid()) and role='admin');
 $$;
 revoke all on function public.is_admin() from public;
-grant execute on function public.is_admin() to authenticated;
+grant execute on function public.is_admin() to anon, authenticated;
+
+-- Keep the denormalized like count accurate without requiring permission to edit the script itself.
+create or replace function public.refresh_script_likes_count() returns trigger language plpgsql security definer set search_path = '' as $
+begin
+ update public.scripts set likes_count=(select count(*) from public.script_likes where script_id=coalesce(new.script_id,old.script_id)) where id=coalesce(new.script_id,old.script_id);
+ return coalesce(new,old);
+end; $;
+revoke all on function public.refresh_script_likes_count() from public;
 drop policy if exists "users update own profile" on public.profiles;
 drop policy if exists "admins manage categories" on public.categories;
 drop policy if exists "published scripts or owner/admin read" on public.scripts;
